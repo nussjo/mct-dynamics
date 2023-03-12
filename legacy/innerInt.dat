@@ -1,0 +1,202 @@
+	double Int = (Grid[k]*S[k]*S[q]*particleDensity*m_phi[k]*(
+			(Power(clow - cupp,2)*Power(p,10)*(Slow - Supp)*(philow - phiupp))/10.
+			+ (Power(p,2)*(lower*Supp - Slow*upper)*Power(c[k]*(Power(Grid[k],2)
+			+ Power(Grid[q],2))*(lower - upper)
+			- (Power(Grid[k],2)
+			- Power(Grid[q],2))*(cupp*lower - clow*upper),2)*(-(upper*philow) + lower*phiupp))/2.
+			- ((clow - cupp)*Power(p,9)*(2*c[k]*(Slow - Supp)*(lower - upper)*(philow - phiupp)
+			+ cupp*(upper*(-2*Slow*philow + Supp*philow + Slow*phiupp)
+			+ lower*(-2*Slow*philow + 3*Supp*philow + 3*Slow*phiupp - 4*Supp*phiupp))
+			- clow*(lower*(Supp*philow + Slow*phiupp - 2*Supp*phiupp)
+			+ upper*(-4*Slow*philow + 3*Supp*philow + 3*Slow*phiupp - 2*Supp*phiupp))))/9.
+			+ (Power(p,8)*(Power(c[k],2)*(Slow - Supp)*Power(lower - upper,2)*(philow - phiupp)
+			+ Power(clow,2)*(-3*lower*Supp*upper*philow
+			+ 6*Slow*Power(upper,2)*philow
+			- 3*Supp*Power(upper,2)*philow
+			- 2*Power(Grid[k],2)*(Slow - Supp)*(philow - phiupp)
+			+ 2*Power(Grid[q],2)*(Slow - Supp)*(philow - phiupp)
+			+ Power(lower,2)*Supp*phiupp
+			- 3*lower*Slow*upper*phiupp
+			+ 4*lower*Supp*upper*phiupp
+			- 3*Slow*Power(upper,2)*phiupp
+			+ Supp*Power(upper,2)*phiupp)
+			- 2*c[k]*cupp*(lower - upper)*(upper*(2*Slow*philow - Supp*philow - Slow*phiupp)
+			+ lower*(-2*Supp*philow + Slow*(philow - 2*phiupp) + 3*Supp*phiupp))
+			+ Power(cupp,2)*(2*Power(Grid[q],2)*Slow*philow - 2*Power(Grid[q],2)*Supp*philow
+			+ Slow*Power(upper,2)*philow
+			- 2*Power(Grid[k],2)*(Slow - Supp)*(philow - phiupp)
+			- 2*Power(Grid[q],2)*Slow*phiupp + 2*Power(Grid[q],2)*Supp*phiupp
+			+ lower*upper*(4*Slow*philow - 3*Supp*philow - 3*Slow*phiupp)
+			+ Power(lower,2)*(Slow*philow - 3*Supp*philow - 3*Slow*phiupp + 6*Supp*phiupp))
+			+ 2*clow*(cupp*(Power(lower,2)*Supp*philow - 3*lower*Slow*upper*philow
+			+ 4*lower*Supp*upper*philow - 3*Slow*Power(upper,2)*philow
+			+ Supp*Power(upper,2)*philow
+			+ 2*Power(Grid[k],2)*(Slow - Supp)*(philow - phiupp)
+			- 2*Power(Grid[q],2)*(Slow - Supp)*(philow - phiupp)
+			+ Power(lower,2)*Slow*phiupp
+			- 3*Power(lower,2)*Supp*phiupp
+			+ 4*lower*Slow*upper*phiupp
+			- 3*lower*Supp*upper*phiupp
+			+ Slow*Power(upper,2)*phiupp)
+			- c[k]*(lower - upper)*(lower*(Supp*(philow - 2*phiupp) + Slow*phiupp)
+			+ upper*(-3*Slow*philow + 2*Supp*philow + 2*Slow*phiupp - Supp*phiupp)))))/8.
+			+ (Power(p,3)*(c[k]*(Power(Grid[k],2)
+			+ Power(Grid[q],2))*(lower - upper)
+			- (Power(Grid[k],2) - Power(Grid[q],2))*(cupp*lower - clow*upper))*(c[k]*(Power(Grid[k],2)
+			+ Power(Grid[q],2))*(lower - upper)*(lower*(Supp*(philow - 2*phiupp)
+			+ Slow*phiupp) + upper*(Supp*philow + Slow*(-2*philow + phiupp)))
+			- (Power(Grid[k],2)
+			- Power(Grid[q],2))*(cupp*(-2*Slow*Power(upper,2)*philow
+			+ lower*upper*(-2*Slow*philow + 3*Supp*philow + 3*Slow*phiupp)
+			+ Power(lower,2)*(Supp*philow + Slow*phiupp - 4*Supp*phiupp))
+			+ clow*(2*Power(lower,2)*Supp*phiupp
+			+ Power(upper,2)*(4*Slow*philow - Supp*philow - Slow*phiupp)
+			+ lower*upper*(-3*Supp*philow - 3*Slow*phiupp + 2*Supp*phiupp)))))/3.
+			+ (Power(p,7)*(Power(c[k],2)*Power(lower - upper,2)*(lower*(Supp*(philow - 2*phiupp) + Slow*phiupp)
+			+ upper*(Supp*philow + Slow*(-2*philow + phiupp)))
+			+ Power(clow,2)*(-2*Power(lower,2)*Supp*upper*phiupp
+			+ upper*(Power(upper,2)*(-4*Slow*philow + Supp*philow + Slow*phiupp)
+			+ Power(Grid[q],2)*(-8*Slow*philow + 6*Supp*philow + 6*Slow*phiupp - 4*Supp*phiupp))
+			+ lower*(2*Power(Grid[q],2)*(Supp*philow + Slow*phiupp - 2*Supp*phiupp)
+			+ Power(upper,2)*(3*Supp*philow + 3*Slow*phiupp - 2*Supp*phiupp))
+			- 2*Power(Grid[k],2)*(lower*(Supp*philow + Slow*phiupp - 2*Supp*phiupp)
+			+ upper*(-4*Slow*philow + 3*Supp*philow + 3*Slow*phiupp - 2*Supp*phiupp)))
+			+ 2*c[k]*(lower - upper)*(-(cupp*(-(Slow*Power(upper,2)*philow)
+			+ 2*Power(Grid[k],2)*(Slow - Supp)*(philow - phiupp)
+			+ 2*lower*upper*(-(Slow*philow) + Supp*philow + Slow*phiupp)
+			+ Power(lower,2)*(Supp*philow + Slow*phiupp - 3*Supp*phiupp)))
+			+ clow*(2*Power(Grid[k],2)*(Slow - Supp)*(philow - phiupp)
+			- Power(lower,2)*Supp*phiupp
+			+ Power(upper,2)*(-3*Slow*philow + Supp*philow + Slow*phiupp)
+			+ 2*lower*upper*(Supp*philow + Slow*phiupp - Supp*phiupp)))
+			- 2*clow*cupp*(-(Power(lower,3)*Supp*phiupp)
+			+ Power(lower,2)*upper*(2*Supp*philow + 2*Slow*phiupp - 3*Supp*phiupp)
+			+ lower*(Power(upper,2)*(-3*Slow*philow + 2*Supp*philow + 2*Slow*phiupp)
+			+ Power(Grid[q],2)*(-2*Slow*philow + 4*Supp*philow + 4*Slow*phiupp - 6*Supp*phiupp))
+			- upper*(Slow*Power(upper,2)*philow
+			+ 2*Power(Grid[q],2)*(3*Slow*philow - 2*Supp*philow - 2*Slow*phiupp + Supp*phiupp))
+			+ 2*Power(Grid[k],2)*(upper*(3*Slow*philow - 2*Supp*philow - 2*Slow*phiupp + Supp*phiupp)
+			+ lower*(Slow*philow - 2*Supp*philow - 2*Slow*phiupp + 3*Supp*phiupp)))
+			+ Power(cupp,2)*(Power(lower,3)*(Supp*(philow - 4*phiupp) + Slow*phiupp)
+			+ Power(lower,2)*upper*(-2*Slow*philow + 3*Supp*philow + 3*Slow*phiupp)
+			+ 2*Power(Grid[q],2)*upper*(Supp*philow + Slow*(-2*philow + phiupp))
+			- 2*lower*(Slow*Power(upper,2)*philow
+			+ Power(Grid[q],2)*(2*Slow*philow - 3*Supp*philow - 3*Slow*phiupp + 4*Supp*phiupp))
+			+ Power(Grid[k],2)*(2*upper*(2*Slow*philow - Supp*philow - Slow*phiupp)
+			+ lower*(4*Slow*philow - 6*Supp*philow - 6*Slow*phiupp + 8*Supp*phiupp)))))/7.
+			- (Power(p,5)*(2*Power(c[k],2)*(Power(Grid[k],2) + Power(Grid[q],2))*Power(lower - upper,2)*(lower*(Supp*(philow - 2*phiupp) + Slow*phiupp)
+			+ upper*(Supp*philow + Slow*(-2*philow + phiupp)))
+			+ 2*c[k]*(lower - upper)*(cupp*(-(Power(Grid[k],4)*(Slow - Supp)*(philow - phiupp))
+			+ Power(Grid[q],4)*(Slow - Supp)*(philow - phiupp)
+			- 2*Power(Grid[k],2)*(-(Slow*Power(upper,2)*philow)
+			+ 2*lower*upper*(-(Slow*philow) + Supp*philow + Slow*phiupp)
+			+ Power(lower,2)*(Supp*philow + Slow*phiupp - 3*Supp*phiupp)))
+			+ clow*(Power(Grid[k],4)*(Slow - Supp)*(philow - phiupp)
+			- Power(Grid[q],4)*(Slow - Supp)*(philow - phiupp)
+			+ Power(Grid[k],2)*(-2*Power(lower,2)*Supp*phiupp
+			+ 2*Power(upper,2)*(-3*Slow*philow + Supp*philow + Slow*phiupp)
+			+ 4*lower*upper*(Supp*philow + Slow*phiupp - Supp*phiupp))))
+			- (Power(Grid[k],2) - Power(Grid[q],2))*(Power(clow,2)*(4*Power(lower,2)*Supp*upper*phiupp
+			- lower*(Power(Grid[q],2)*(Supp*philow + Slow*phiupp - 2*Supp*phiupp)
+			+ 2*Power(upper,2)*(3*Supp*philow + 3*Slow*phiupp - 2*Supp*phiupp))
+			+ Power(Grid[k],2)*(lower*(Supp*philow + Slow*phiupp - 2*Supp*phiupp)
+			+ upper*(-4*Slow*philow + 3*Supp*philow + 3*Slow*phiupp - 2*Supp*phiupp))
+			+ upper*(2*Power(upper,2)*(4*Slow*philow - Supp*philow - Slow*phiupp)
+			+ Power(Grid[q],2)*(4*Slow*philow - 3*Supp*philow - 3*Slow*phiupp + 2*Supp*phiupp)))
+			+ 2*clow*cupp*(-2*Power(lower,3)*Supp*phiupp
+			+ 2*Power(lower,2)*upper*(2*Supp*philow + 2*Slow*phiupp - 3*Supp*phiupp)
+			+ lower*(2*Power(upper,2)*(-3*Slow*philow + 2*Supp*philow + 2*Slow*phiupp)
+			+ Power(Grid[q],2)*(-(Slow*philow) + 2*Supp*philow + 2*Slow*phiupp - 3*Supp*phiupp))
+			- upper*(2*Slow*Power(upper,2)*philow
+			+ Power(Grid[q],2)*(3*Slow*philow - 2*Supp*philow - 2*Slow*phiupp + Supp*phiupp))
+			+ Power(Grid[k],2)*(upper*(3*Slow*philow - 2*Supp*philow - 2*Slow*phiupp + Supp*phiupp)
+			+ lower*(Slow*philow - 2*Supp*philow - 2*Slow*phiupp + 3*Supp*phiupp)))
+			+ Power(cupp,2)*(2*Power(lower,2)*upper*(2*Slow*philow - 3*Supp*philow - 3*Slow*phiupp)
+			+ Power(Grid[q],2)*upper*(2*Slow*philow - Supp*philow - Slow*phiupp)
+			- 2*Power(lower,3)*(Supp*(philow - 4*phiupp) + Slow*phiupp)
+			+ Power(Grid[k],2)*(upper*(-2*Slow*philow + Supp*philow + Slow*phiupp)
+			+ lower*(-2*Slow*philow + 3*Supp*philow + 3*Slow*phiupp - 4*Supp*phiupp))
+			+ lower*(4*Slow*Power(upper,2)*philow
+			+ Power(Grid[q],2)*(2*Slow*philow - 3*Supp*philow - 3*Slow*phiupp + 4*Supp*phiupp))))))/5.
+			+ (Power(p,4)*(Power(c[k],2)*(Power(Grid[k],2)
+			+ Power(Grid[q],2))*Power(lower - upper,2)*(Power(Grid[k],2)*(Slow - Supp)*(philow - phiupp)
+			+ Power(Grid[q],2)*(Slow - Supp)*(philow - phiupp)
+			- 2*(lower*Supp - Slow*upper)*(-(upper*philow) + lower*phiupp))
+			- 2*c[k]*(lower - upper)*(clow*(2*Power(Grid[k],2)*upper*(-(lower*Supp)
+			+ Slow*upper)*(upper*philow - lower*phiupp)
+			+ Power(Grid[k],4)*(lower*(Supp*philow + Slow*phiupp - 2*Supp*phiupp)
+			+ upper*(-3*Slow*philow + 2*Supp*philow + 2*Slow*phiupp - Supp*phiupp))
+			- Power(Grid[q],4)*(lower*(Supp*philow + Slow*phiupp - 2*Supp*phiupp)
+			+ upper*(-3*Slow*philow + 2*Supp*philow + 2*Slow*phiupp - Supp*phiupp)))
+			+ cupp*(-2*Power(Grid[k],2)*lower*(lower*Supp - Slow*upper)*(-(upper*philow) + lower*phiupp)
+			+ Power(Grid[q],4)*(upper*(-2*Slow*philow + Supp*philow + Slow*phiupp)
+			+ lower*(-(Slow*philow) + 2*Supp*philow + 2*Slow*phiupp - 3*Supp*phiupp))
+			+ Power(Grid[k],4)*(upper*(2*Slow*philow - Supp*philow - Slow*phiupp)
+			+ lower*(Slow*philow - 2*Supp*philow - 2*Slow*phiupp + 3*Supp*phiupp))))
+			+ (Power(Grid[k],2) - Power(Grid[q],2))*(2*clow*cupp*(2*Power(lower,3)*Supp*upper*phiupp
+			+ Power(Grid[q],2)*Power(upper,2)*(3*Slow*philow - Supp*philow - Slow*phiupp)
+			- Power(lower,2)*(2*Power(upper,2)*(Supp*philow + Slow*phiupp)
+			+ Power(Grid[q],2)*(Supp*philow + Slow*phiupp - 3*Supp*phiupp))
+			+ Power(Grid[k],2)*(Power(upper,2)*(-3*Slow*philow + Supp*philow + Slow*phiupp)
+			+ Power(lower,2)*(Supp*philow + Slow*phiupp - 3*Supp*phiupp)
+			+ lower*upper*(-3*Slow*philow + 4*Supp*philow + 4*Slow*phiupp - 3*Supp*phiupp))
+			+ lower*upper*(2*Slow*Power(upper,2)*philow
+			+ Power(Grid[q],2)*(3*Slow*philow - 4*Supp*philow - 4*Slow*phiupp + 3*Supp*phiupp)))
+			+ Power(clow,2)*(-(Power(lower,2)*Supp*(Power(Grid[q],2) + 2*Power(upper,2))*phiupp)
+			+ lower*upper*(2*Power(upper,2)*(Supp*philow + Slow*phiupp)
+			+ Power(Grid[q],2)*(3*Supp*philow + 3*Slow*phiupp - 4*Supp*phiupp))
+			- Power(upper,2)*(2*Slow*Power(upper,2)*philow
+			+ Power(Grid[q],2)*(6*Slow*philow - 3*Supp*philow - 3*Slow*phiupp + Supp*phiupp))
+			+ Power(Grid[k],2)*(Power(lower,2)*Supp*phiupp
+			+ Power(upper,2)*(6*Slow*philow - 3*Supp*philow - 3*Slow*phiupp + Supp*phiupp)
+			+ lower*upper*(-3*Supp*philow - 3*Slow*phiupp + 4*Supp*phiupp)))
+			+ Power(cupp,2)*(-(Power(Grid[q],2)*Slow*Power(upper,2)*philow)
+			- 2*Power(lower,4)*Supp*phiupp
+			+ 2*Power(lower,3)*upper*(Supp*philow + Slow*phiupp)
+			+ lower*Power(Grid[q],2)*upper*(-4*Slow*philow + 3*Supp*philow + 3*Slow*phiupp)
+			+ Power(Grid[k],2)*(Slow*Power(upper,2)*philow
+			+ lower*upper*(4*Slow*philow - 3*Supp*philow - 3*Slow*phiupp)
+			+ Power(lower,2)*(Slow*philow - 3*Supp*philow - 3*Slow*phiupp + 6*Supp*phiupp))
+			- Power(lower,2)*(2*Slow*Power(upper,2)*philow
+			+ Power(Grid[q],2)*(Slow*philow - 3*Supp*philow - 3*Slow*phiupp + 6*Supp*phiupp))))))/4.
+			+ (Power(p,6)*(Power(c[k],2)*Power(lower - upper,2)*(-2*Power(Grid[k],2)*(Slow - Supp)*(philow - phiupp)
+			- 2*Power(Grid[q],2)*(Slow - Supp)*(philow - phiupp)
+			+ (lower*Supp - Slow*upper)*(-(upper*philow) + lower*phiupp))
+			- 2*c[k]*cupp*(lower - upper)*(lower*(lower*Supp - Slow*upper)*(-(upper*philow) + lower*phiupp)
+			+ Power(Grid[k],2)*(2*upper*(-2*Slow*philow + Supp*philow + Slow*phiupp)
+			+ lower*(-2*Slow*philow + 4*Supp*philow + 4*Slow*phiupp - 6*Supp*phiupp)))
+			+ Power(clow,2)*(Power(Grid[k],4)*(Slow - Supp)*(philow - phiupp)
+			+ Power(Grid[q],4)*(Slow - Supp)*(philow - phiupp)
+			+ Power(upper,2)*(-(lower*Supp) + Slow*upper)*(upper*philow - lower*phiupp)
+			+ 2*Power(Grid[q],2)*(Power(lower,2)*Supp*phiupp
+			+ Power(upper,2)*(6*Slow*philow - 3*Supp*philow - 3*Slow*phiupp + Supp*phiupp)
+			+ lower*upper*(-3*Supp*philow - 3*Slow*phiupp + 4*Supp*phiupp))
+			- 2*Power(Grid[k],2)*(Power(Grid[q],2)*(Slow - Supp)*(philow - phiupp)
+			+ Power(lower,2)*Supp*phiupp
+			+ Power(upper,2)*(6*Slow*philow - 3*Supp*philow - 3*Slow*phiupp + Supp*phiupp)
+			+ lower*upper*(-3*Supp*philow - 3*Slow*phiupp + 4*Supp*phiupp)))
+			+ Power(cupp,2)*(Power(Grid[q],4)*Slow*philow
+			- Power(Grid[q],4)*Supp*philow + 2*Power(Grid[q],2)*Slow*Power(upper,2)*philow
+			+ Power(Grid[k],4)*(Slow - Supp)*(philow - phiupp)
+			- Power(Grid[q],4)*Slow*phiupp
+			+ Power(lower,4)*Supp*phiupp
+			+ Power(Grid[q],4)*Supp*phiupp
+			+ 2*lower*Power(Grid[q],2)*upper*(4*Slow*philow - 3*Supp*philow - 3*Slow*phiupp)
+			- Power(lower,3)*upper*(Supp*philow + Slow*phiupp)
+			- 2*Power(Grid[k],2)*(Slow*Power(upper,2)*philow + Power(Grid[q],2)*(Slow - Supp)*(philow - phiupp)
+			+ lower*upper*(4*Slow*philow - 3*Supp*philow - 3*Slow*phiupp)
+			+ Power(lower,2)*(Slow*philow - 3*Supp*philow - 3*Slow*phiupp + 6*Supp*phiupp))
+			+ Power(lower,2)*(Slow*Power(upper,2)*philow + 2*Power(Grid[q],2)*(Slow*philow - 3*Supp*philow - 3*Slow*phiupp + 6*Supp*phiupp)))
+			- 2*clow*(-(c[k]*(lower - upper)*(upper*(-(lower*Supp) + Slow*upper)*(upper*philow - lower*phiupp)
+			+ 2*Power(Grid[k],2)*(lower*(Supp*philow + Slow*phiupp - 2*Supp*phiupp)
+			+ upper*(-3*Slow*philow + 2*Supp*philow + 2*Slow*phiupp - Supp*phiupp))))
+			+ cupp*(Power(Grid[k],4)*(Slow - Supp)*(philow - phiupp)
+			+ Power(Grid[q],4)*(Slow - Supp)*(philow - phiupp)
+			+ lower*upper*(lower*Supp - Slow*upper)*(-(upper*philow) + lower*phiupp)
+			+ 2*Power(Grid[k],2)*(-(Power(Grid[q],2)*(Slow - Supp)*(philow - phiupp))
+			+ Power(upper,2)*(-3*Slow*philow + Supp*philow + Slow*phiupp)
+			+ Power(lower,2)*(Supp*philow + Slow*phiupp - 3*Supp*phiupp)
+			+ lower*upper*(-3*Slow*philow + 4*Supp*philow + 4*Slow*phiupp - 3*Supp*phiupp))
+			- 2*Power(Grid[q],2)*(Power(lower,2)*(Supp*(philow - 3*phiupp) + Slow*phiupp)
+			+ lower*upper*(-3*Slow*philow + 4*Supp*philow + 4*Slow*phiupp - 3*Supp*phiupp)
+			+ Power(upper,2)*(Supp*philow + Slow*(-3*philow + phiupp)))))))/6.))/(32.*Power(Pi,2)*Power(Grid[q],5)*Power(lower - upper,4))

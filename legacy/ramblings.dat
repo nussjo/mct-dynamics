@@ -1,0 +1,295 @@
+void Structure::calculateDirectCorrelation()
+{
+	std::cout << "# Calculating direct correlation function...\n";
+	for (int i=0; i<m_size; ++i)
+	{
+		double q = !(m_qgrid[i]<0.01) ? m_qgrid[i] : 0.01;
+		double a0, b0, c0, a1, b1, c1, a, b, Sqinv;
+		a0 = (1+2*m_eta)/pow(1-m_eta,2)-12*m_tau*m_eta/(1-m_eta);
+		b0 = -3*m_eta/(2*pow(1-m_eta,2))+6*m_tau*m_eta/(1-m_eta);;
+		c0 = m_tau-a0/2-b0;
+		a1 = m_tau*6*m_eta/pow(1-m_eta,2)*(-2+m_eta*(5-12*c0)+12*pow(m_eta,2)*c0);
+		b1 = m_tau*9*m_eta/pow(1-m_eta,2)*(1-2*m_eta+4*m_eta*c0-4*pow(m_eta,2)*c0);
+		c1 = -a1/2-b1+m_tau/2+6*m_tau*m_eta*c0;
+		a = a0+m_delta*a1;
+		b = b0+m_delta*b1;
+
+		Sqinv = 1 + (144*Power(a,2)*Power(m_eta,2))/Power(q,6) +
+			(144*Power(a,2)*Power(m_eta,2))/Power(q,4) + 
+			(288*a*b*Power(m_eta,2))/Power(q,4) + 
+			(144*Power(b,2)*Power(m_eta,2))/Power(q,4)+(24*b*m_eta)/Power(q,2) + 
+			(36*Power(a,2)*Power(m_eta,2))/Power(q,2) + 
+			(144*a*b*Power(m_eta,2))/Power(q,2) + 
+ 			(144*Power(b,2)*Power(m_eta,2))/Power(q,2) - 
+			(288*a*Power(m_eta,2)*m_tau)/Power(q,4) - 
+			(144*a*m_delta*Power(m_eta,2)*m_tau)/Power(q,4) - 
+ 			(1728*a*c0*m_delta*Power(m_eta,3)*m_tau)/Power(q,4) - 
+ 			(144*a*Power(m_eta,2)*m_tau)/Power(q,2) - 
+			(288*b*Power(m_eta,2)*m_tau)/Power(q,2) - 
+ 			(72*a*m_delta*Power(m_eta,2)*m_tau)/Power(q,2) - 
+			(144*b*m_delta*Power(m_eta,2)*m_tau)/Power(q,2) - 
+ 			(864*a*c0*m_delta*Power(m_eta,3)*m_tau)/Power(q,2) - 
+			(1728*b*c0*m_delta*Power(m_eta,3)*m_tau)/Power(q,2) + 
+ 			(3456*b*Power(m_eta,3)*Power(m_tau,2))/(Power(m_delta,2)*Power(q,6)) + 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2))/(m_delta*Power(q,6)) + 
+			(288*Power(m_eta,2)*Power(m_tau,2))/(Power(m_delta,2)*Power(q,4)) - 
+			(1728*b*Power(m_eta,3)*Power(m_tau,2))/Power(q,4) + 
+			(1728*a*Power(m_eta,3)*Power(m_tau,2))/(m_delta*Power(q,4)) + 
+ 			(3456*b*Power(m_eta,3)*Power(m_tau,2))/(m_delta*Power(q,4)) - 
+			(576*a*m_delta*Power(m_eta,3)*Power(m_tau,2))/Power(q,4) + 
+			(144*m_delta*Power(m_eta,2)*Power(m_tau,2))/Power(q,2) - 
+ 			(288*a*m_delta*Power(m_eta,3)*Power(m_tau,2))/Power(q,2) - 
+ 			(576*b*m_delta*Power(m_eta,3)*Power(m_tau,2))/Power(q,2) + 
+ 			(1728*c0*m_delta*Power(m_eta,3)*Power(m_tau,2))/Power(q,2) - 
+ 			(1728*Power(m_eta,3)*Power(m_tau,3))/Power(q,4) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3))/(m_delta*Power(q,4)) - 
+			(20736*c0*Power(m_eta,4)*Power(m_tau,3))/Power(q,4) + 
+			(576*m_delta*Power(m_eta,3)*Power(m_tau,3))/Power(q,2) + 
+			(20736*Power(m_eta,4)*Power(m_tau,4))/(Power(m_delta,4)*Power(q,8)) - 
+			(1728*Power(m_eta,4)*Power(m_tau,4))/Power(q,4) - 
+			(288*Power(a,2)*Power(m_eta,2)*Cos(q))/Power(q,6) - 
+			(144*Power(a,2)*Power(m_eta,2)*Cos(q))/Power(q,4) - 
+			(576*a*b*Power(m_eta,2)*Cos(q))/Power(q,4) - 
+			(288*Power(b,2)*Power(m_eta,2)*Cos(q))/Power(q,4) - 
+			(24*a*m_eta*Cos(q))/Power(q,2) - (24*b*m_eta*Cos(q))/Power(q,2) - 
+			(288*a*Power(m_eta,2)*m_tau*Cos(q))/(m_delta*Power(q,6)) + 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Cos(q))/(m_delta*Power(q,6)) + 
+			(288*a*Power(m_eta,2)*m_tau*Cos(q))/Power(q,4) - 
+			(144*a*Power(m_eta,2)*m_tau*Cos(q))/(m_delta*Power(q,4)) - 
+			(576*b*Power(m_eta,2)*m_tau*Cos(q))/(m_delta*Power(q,4)) + 
+			(144*a*m_delta*Power(m_eta,2)*m_tau*Cos(q))/Power(q,4) - 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Cos(q))/Power(q,4) + 
+			(1728*a*c0*Power(m_eta,3)*m_tau*Cos(q))/(m_delta*Power(q,4)) + 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Cos(q))/(m_delta*Power(q,4)) + 
+			(1728*a*c0*m_delta*Power(m_eta,3)*m_tau*Cos(q))/Power(q,4) - 
+			(24*m_eta*m_tau*Cos(q))/(m_delta*Power(q,2)) - 
+			(288*c0*Power(m_eta,2)*m_tau*Cos(q))/Power(q,2) - 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2)*Cos(q))/(Power(m_delta,2)*Power(q,6)) - 
+			(3456*b*Power(m_eta,3)*Power(m_tau,2)*Cos(q))/(Power(m_delta,2)*Power(q,6)) - 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2)*Cos(q))/(m_delta*Power(q,6)) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Cos(q))/Power(q,4) + 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Cos(q))/(m_delta*Power(q,4)) + 
+			(1728*a*Power(m_eta,3)*Power(m_tau,2)*Cos(q))/Power(q,4) + 
+			(1728*b*Power(m_eta,3)*Power(m_tau,2)*Cos(q))/Power(q,4) - 
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Cos(q))/(m_delta*Power(q,4)) + 
+			(576*a*m_delta*Power(m_eta,3)*Power(m_tau,2)*Cos(q))/Power(q,4) - 
+			(20736*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Cos(q))/Power(q,4) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos(q))/(Power(m_delta,3)*Power(q,6)) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos(q))/(Power(m_delta,2)*Power(q,6)) + 
+			(576*Power(m_eta,3)*Power(m_tau,3)*Cos(q))/Power(q,4) + 
+			(1728*Power(m_eta,3)*Power(m_tau,3)*Cos(q))/(m_delta*Power(q,4)) + 
+			(13824*c0*Power(m_eta,4)*Power(m_tau,3)*Cos(q))/Power(q,4) + 
+			(144*Power(a,2)*Power(m_eta,2)*Power(Cos(q),2))/Power(q,6) + 
+			(144*Power(a,2)*Power(m_eta,2)*Power(Cos(q),2))/Power(q,4) + 
+			(288*a*b*Power(m_eta,2)*Power(Cos(q),2))/Power(q,4) + 
+			(144*Power(b,2)*Power(m_eta,2)*Power(Cos(q),2))/Power(q,4) + 
+			(288*a*Power(m_eta,2)*m_tau*Power(Cos(q),2))/(m_delta*Power(q,6)) - 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Power(Cos(q),2))/(m_delta*Power(q,6)) + 
+			(288*a*Power(m_eta,2)*m_tau*Power(Cos(q),2))/(m_delta*Power(q,4)) + 
+			(288*b*Power(m_eta,2)*m_tau*Power(Cos(q),2))/(m_delta*Power(q,4)) + 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Power(Cos(q),2))/Power(q,4) + 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Power(Cos(q),2))/Power(q,4) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Cos(q),2))/(Power(m_delta,2)*Power(q,6)) - 
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Power(Cos(q),2))/(Power(m_delta,2)*Power(q,6)) + 
+			(20736*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Power(Cos(q),2))/(Power(m_delta,2)*Power(q,6)) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Cos(q),2))/(Power(m_delta,2)*Power(q,4)) + 
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Power(Cos(q),2))/(m_delta*Power(q,4)) +
+			(20736*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Power(Cos(q),2))/Power(q,4) - 
+			(3456*b*Power(m_eta,3)*Power(m_tau,2)*Cos(m_delta*q))/(Power(m_delta,2)*Power(q,6)) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Cos(m_delta*q))/(Power(m_delta,2)*Power(q,4)) - 
+			(41472*Power(m_eta,4)*Power(m_tau,4)*Cos(m_delta*q))/(Power(m_delta,4)*Power(q,8)) + 
+			(20736*Power(m_eta,4)*Power(m_tau,4)*Cos(m_delta*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2)*Cos(q)*Cos(m_delta*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(3456*b*Power(m_eta,3)*Power(m_tau,2)*Cos(q)*Cos(m_delta*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos(q)*Cos(m_delta*q))/(Power(m_delta,3)*Power(q,6)) + 
+			(41472*c0*Power(m_eta,4)*Power(m_tau,3)*Cos(q)*Cos(m_delta*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(20736*Power(m_eta,4)*Power(m_tau,4)*Power(Cos(m_delta*q),2))/(Power(m_delta,4)*Power(q,8)) + 
+			(288*a*Power(m_eta,2)*m_tau*Cos((1 + m_delta)*q))/(m_delta*Power(q,6)) - 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Cos((1 + m_delta)*q))/(m_delta*Power(q,6)) + 
+			(288*b*Power(m_eta,2)*m_tau*Cos((1 + m_delta)*q))/Power(q,4) + 
+			(144*a*Power(m_eta,2)*m_tau*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) + 
+			(576*b*Power(m_eta,2)*m_tau*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) - 
+			(1728*a*c0*Power(m_eta,3)*m_tau*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) - 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) + 
+			(24*m_eta*m_tau*Cos((1 + m_delta)*q))/Power(q,2) + 
+			(24*m_eta*m_tau*Cos((1 + m_delta)*q))/(m_delta*Power(q,2)) - 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Cos((1 + m_delta)*q))/Power(q,4) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) +
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) + 
+			(20736*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Cos((1 + m_delta)*q))/Power(q,4) +
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos((1 + m_delta)*q))/(Power(m_delta,3)*Power(q,6)) + 
+			(6912*Power(m_eta,3)*Power(m_tau,3)*Cos((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) - 
+			(41472*c0*Power(m_eta,4)*Power(m_tau,3)*Cos((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) - 
+			(2304*Power(m_eta,3)*Power(m_tau,3)*Cos((1 + m_delta)*q))/Power(q,4) - 
+			(1728*Power(m_eta,3)*Power(m_tau,3)*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) +
+			(6912*c0*Power(m_eta,4)*Power(m_tau,3)*Cos((1 + m_delta)*q))/Power(q,4) - 
+			(288*a*Power(m_eta,2)*m_tau*Cos(q)*Cos((1 + m_delta)*q))/(m_delta*Power(q,6)) +
+			(3456*a*c0*Power(m_eta,3)*m_tau*Cos(q)*Cos((1 + m_delta)*q))/(m_delta*Power(q,6)) - 
+			(288*a*Power(m_eta,2)*m_tau*Cos(q)*Cos((1 + m_delta)*q))/Power(q,4) - 
+			(288*b*Power(m_eta,2)*m_tau*Cos(q)*Cos((1 + m_delta)*q))/Power(q,4) - 
+   			(288*a*Power(m_eta,2)*m_tau*Cos(q)*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) -
+			(288*b*Power(m_eta,2)*m_tau*Cos(q)*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Cos(q)*Cos((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(6912*c0*Power(m_eta,3)*Power(m_tau,2)*Cos(q)*Cos((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) - 
+			(41472*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Cos(q)*Cos((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Cos(q)*Cos((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,4)) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Cos(q)*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) -
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Cos(q)*Cos((1 + m_delta)*q))/Power(q,4) - 
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Cos(q)*Cos((1 + m_delta)*q))/(m_delta*Power(q,4)) -
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos(m_delta*q)*Cos((1 + m_delta)*q))/(Power(m_delta,3)*Power(q,6)) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos(m_delta*q)*Cos((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Cos((1 + m_delta)*q),2))/(Power(m_delta,2)*Power(q,6)) - 
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Power(Cos((1 + m_delta)*q),2))/(Power(m_delta,2)*Power(q,6)) + 
+			(20736*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Power(Cos((1 + m_delta)*q),2))/(Power(m_delta,2)*Power(q,6)) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Cos((1 + m_delta)*q),2))/Power(q,4) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Cos((1 + m_delta)*q),2))/(Power(m_delta,2)*Power(q,4)) + 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Power(Cos((1 + m_delta)*q),2))/(m_delta*Power(q,4)) - 
+			(288*Power(a,2)*Power(m_eta,2)*Sin(q))/Power(q,5) + 
+			(24*a*m_eta*Sin(q))/Power(q,3) - 
+			(144*Power(a,2)*Power(m_eta,2)*Sin(q))/Power(q,3) - 
+			(432*a*b*Power(m_eta,2)*Sin(q))/Power(q,3) - 
+			(288*Power(b,2)*Power(m_eta,2)*Sin(q))/Power(q,3) - 
+			(288*a*Power(m_eta,2)*m_tau*Sin(q))/(m_delta*Power(q,5)) + 
+			(288*b*Power(m_eta,2)*m_tau*Sin(q))/(m_delta*Power(q,5)) - 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Sin(q))/Power(q,5) - 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Sin(q))/(m_delta*Power(q,5)) + 
+			(24*m_eta*m_tau*Sin(q))/(m_delta*Power(q,3)) + 
+			(288*a*Power(m_eta,2)*m_tau*Sin(q))/Power(q,3) + 
+			(288*b*Power(m_eta,2)*m_tau*Sin(q))/Power(q,3) - 
+			(144*a*Power(m_eta,2)*m_tau*Sin(q))/(m_delta*Power(q,3)) - 
+			(288*b*Power(m_eta,2)*m_tau*Sin(q))/(m_delta*Power(q,3)) - 
+			(288*c0*Power(m_eta,2)*m_tau*Sin(q))/(m_delta*Power(q,3)) + 
+			(144*a*m_delta*Power(m_eta,2)*m_tau*Sin(q))/Power(q,3) + 
+			(144*b*m_delta*Power(m_eta,2)*m_tau*Sin(q))/Power(q,3) - 
+			(1728*a*c0*Power(m_eta,3)*m_tau*Sin(q))/Power(q,3) - 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Sin(q))/Power(q,3) + 
+			(1728*a*c0*m_delta*Power(m_eta,3)*m_tau*Sin(q))/Power(q,3) + 
+			(1728*b*c0*m_delta*Power(m_eta,3)*m_tau*Sin(q))/Power(q,3) + 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2)*Sin(q))/(Power(m_delta,2)*Power(q,7)) - 
+			(1728*a*Power(m_eta,3)*Power(m_tau,2)*Sin(q))/Power(q,5) - 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2)*Sin(q))/(m_delta*Power(q,5)) - 
+			(3456*b*Power(m_eta,3)*Power(m_tau,2)*Sin(q))/(m_delta*Power(q,5)) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Sin(q))/Power(q,3) + 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Sin(q))/(m_delta*Power(q,3)) + 
+			(5184*c0*Power(m_eta,3)*Power(m_tau,2)*Sin(q))/Power(q,3) + 
+			(576*a*m_delta*Power(m_eta,3)*Power(m_tau,2)*Sin(q))/Power(q,3) + 
+			(576*b*m_delta*Power(m_eta,3)*Power(m_tau,2)*Sin(q))/Power(q,3) + 
+			(1728*c0*m_delta*Power(m_eta,3)*Power(m_tau,2)*Sin(q))/Power(q,3) + 
+			(20736*Power(c0,2)*m_delta*Power(m_eta,4)*Power(m_tau,2)*Sin(q))/Power(q,3) + 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Sin(q))/(Power(m_delta,3)*Power(q,7)) - 
+			(41472*c0*Power(m_eta,4)*Power(m_tau,3)*Sin(q))/(Power(m_delta,3)*Power(q,7)) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Sin(q))/(Power(m_delta,2)*Power(q,5)) - 
+			(1728*Power(m_eta,3)*Power(m_tau,3)*Sin(q))/(m_delta*Power(q,5)) - 
+			(20736*c0*Power(m_eta,4)*Power(m_tau,3)*Sin(q))/(m_delta*Power(q,5)) + 
+			(576*Power(m_eta,3)*Power(m_tau,3)*Sin(q))/Power(q,3) + 
+			(6912*c0*m_delta*Power(m_eta,4)*Power(m_tau,3)*Sin(q))/Power(q,3) - 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2)*Cos(m_delta*q)*Sin(q))/(Power(m_delta,2)*Power(q,7)) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos(m_delta*q)*Sin(q))/(Power(m_delta,3)*Power(q,7)) + 
+			(41472*c0*Power(m_eta,4)*Power(m_tau,3)*Cos(m_delta*q)*Sin(q))/(Power(m_delta,3)*Power(q,7)) + 
+			(288*a*Power(m_eta,2)*m_tau*Cos((1 + m_delta)*q)*Sin(q))/Power(q,5) - 
+			(288*b*Power(m_eta,2)*m_tau*Cos((1 + m_delta)*q)*Sin(q))/(m_delta*Power(q,5)) + 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Cos((1 + m_delta)*q)*Sin(q))/(m_delta*Power(q,5)) + 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Cos((1 + m_delta)*q)*Sin(q))/(m_delta*Power(q,5)) + 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Cos((1 + m_delta)*q)*Sin(q))/(m_delta*Power(q,5)) - 
+			(6912*c0*Power(m_eta,3)*Power(m_tau,2)*Cos((1 + m_delta)*q)*Sin(q))/(m_delta*Power(q,5)) + 
+			(41472*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Cos((1 + m_delta)*q)*Sin(q))/(m_delta*Power(q,5)) + 
+			(144*Power(a,2)*Power(m_eta,2)*Power(Sin(q),2))/Power(q,6) + 
+			(144*Power(a,2)*Power(m_eta,2)*Power(Sin(q),2))/Power(q,4) + 
+			(288*a*b*Power(m_eta,2)*Power(Sin(q),2))/Power(q,4) + 
+			(144*Power(b,2)*Power(m_eta,2)*Power(Sin(q),2))/Power(q,4) + 
+			(288*a*Power(m_eta,2)*m_tau*Power(Sin(q),2))/(m_delta*Power(q,6)) - 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Power(Sin(q),2))/(m_delta*Power(q,6)) + 
+			(288*a*Power(m_eta,2)*m_tau*Power(Sin(q),2))/(m_delta*Power(q,4)) + 
+			(288*b*Power(m_eta,2)*m_tau*Power(Sin(q),2))/(m_delta*Power(q,4)) + 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Power(Sin(q),2))/Power(q,4) + 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Power(Sin(q),2))/Power(q,4) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Sin(q),2))/(Power(m_delta,2)*Power(q,6)) - 
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Power(Sin(q),2))/(Power(m_delta,2)*Power(q,6)) + 
+			(20736*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Power(Sin(q),2))/(Power(m_delta,2)*Power(q,6)) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Sin(q),2))/(Power(m_delta,2)*Power(q,4)) + 
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Power(Sin(q),2))/(m_delta*Power(q,4)) + 
+			(20736*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Power(Sin(q),2))/Power(q,4) - 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2)*Sin(m_delta*q))/(Power(m_delta,2)*Power(q,7)) - 
+			(1728*a*Power(m_eta,3)*Power(m_tau,2)*Sin(m_delta*q))/(Power(m_delta,2)*Power(q,5)) - 
+			(3456*b*Power(m_eta,3)*Power(m_tau,2)*Sin(m_delta*q))/(Power(m_delta,2)*Power(q,5)) + 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Sin(m_delta*q))/(Power(m_delta,2)*Power(q,5)) + 
+			(1728*Power(m_eta,3)*Power(m_tau,3)*Sin(m_delta*q))/(m_delta*Power(q,5)) + 
+			(20736*c0*Power(m_eta,4)*Power(m_tau,3)*Sin(m_delta*q))/(m_delta*Power(q,5)) - 
+			(41472*Power(m_eta,4)*Power(m_tau,4)*Sin(m_delta*q))/(Power(m_delta,3)*Power(q,7)) + 
+			(6912*Power(m_eta,4)*Power(m_tau,4)*Sin(m_delta*q))/(m_delta*Power(q,5)) + 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2)*Cos(q)*Sin(m_delta*q))/(Power(m_delta,2)*Power(q,7)) + 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos(q)*Sin(m_delta*q))/(Power(m_delta,3)*Power(q,7)) - 
+			(41472*c0*Power(m_eta,4)*Power(m_tau,3)*Cos(q)*Sin(m_delta*q))/(Power(m_delta,3)*Power(q,7)) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos((1 + m_delta)*q)*Sin(m_delta*q))/(Power(m_delta,3)*Power(q,7)) + 
+			(41472*c0*Power(m_eta,4)*Power(m_tau,3)*Cos((1 + m_delta)*q)*Sin(m_delta*q))/(Power(m_delta,3)*Power(q,7)) + 
+			(3456*a*Power(m_eta,3)*Power(m_tau,2)*Sin(q)*Sin(m_delta*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(3456*b*Power(m_eta,3)*Power(m_tau,2)*Sin(q)*Sin(m_delta*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Sin(q)*Sin(m_delta*q))/(Power(m_delta,3)*Power(q,6)) + 
+			(41472*c0*Power(m_eta,4)*Power(m_tau,3)*Sin(q)*Sin(m_delta*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(20736*Power(m_eta,4)*Power(m_tau,4)*Power(Sin(m_delta*q),2))/(Power(m_delta,4)*Power(q,8)) + 
+			(288*a*Power(m_eta,2)*m_tau*Sin((1 + m_delta)*q))/Power(q,5) + 
+			(288*a*Power(m_eta,2)*m_tau*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) - 
+			(288*b*Power(m_eta,2)*m_tau*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) + 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) - 
+			(24*m_eta*m_tau*Sin((1 + m_delta)*q))/(m_delta*Power(q,3)) + 
+			(144*a*Power(m_eta,2)*m_tau*Sin((1 + m_delta)*q))/Power(q,3) + 
+			(288*b*Power(m_eta,2)*m_tau*Sin((1 + m_delta)*q))/Power(q,3) + 
+			(144*a*Power(m_eta,2)*m_tau*Sin((1 + m_delta)*q))/(m_delta*Power(q,3)) + 
+ 			(288*b*Power(m_eta,2)*m_tau*Sin((1 + m_delta)*q))/(m_delta*Power(q,3)) + 
+			(288*c0*Power(m_eta,2)*m_tau*Sin((1 + m_delta)*q))/(m_delta*Power(q,3)) - 
+			(432*Power(m_eta,2)*Power(m_tau,2)*Sin((1 + m_delta)*q))/Power(q,3) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Sin((1 + m_delta)*q))/(m_delta*Power(q,3)) - 
+			(144*m_delta*Power(m_eta,2)*Power(m_tau,2)*Sin((1 + m_delta)*q))/Power(q,3) - 
+			(1728*c0*Power(m_eta,3)*Power(m_tau,2)*Sin((1 + m_delta)*q))/Power(q,3) - 
+			(1728*c0*m_delta*Power(m_eta,3)*Power(m_tau,2)*Sin((1 + m_delta)*q))/Power(q,3) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Sin((1 + m_delta)*q))/(Power(m_delta,3)*Power(q,7)) + 
+			(41472*c0*Power(m_eta,4)*Power(m_tau,3)*Sin((1 + m_delta)*q))/(Power(m_delta,3)*Power(q,7)) + 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Sin((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,5)) + 
+			(5184*Power(m_eta,3)*Power(m_tau,3)*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) - 
+			(20736*c0*Power(m_eta,4)*Power(m_tau,3)*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) - 
+			(576*Power(m_eta,3)*Power(m_tau,3)*Sin((1 + m_delta)*q))/Power(q,3) - 
+			(576*m_delta*Power(m_eta,3)*Power(m_tau,3)*Sin((1 + m_delta)*q))/Power(q,3) - 
+			(288*a*Power(m_eta,2)*m_tau*Cos(q)*Sin((1 + m_delta)*q))/Power(q,5) + 
+			(288*b*Power(m_eta,2)*m_tau*Cos(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) - 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Cos(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) - 
+			(3456*b*c0*Power(m_eta,3)*m_tau*Cos(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Cos(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) + 
+			(6912*c0*Power(m_eta,3)*Power(m_tau,2)*Cos(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) - 
+			(41472*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Cos(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,5)) + 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Cos(m_delta*q)*Sin((1 + m_delta)*q))/(Power(m_delta,3)*Power(q,7)) - 
+			(41472*c0*Power(m_eta,4)*Power(m_tau,3)*Cos(m_delta*q)*Sin((1 + m_delta)*q))/(Power(m_delta,3)*Power(q,7)) - 
+			(288*a*Power(m_eta,2)*m_tau*Sin(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,6)) + 
+			(3456*a*c0*Power(m_eta,3)*m_tau*Sin(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,6)) - 
+			(288*a*Power(m_eta,2)*m_tau*Sin(q)*Sin((1 + m_delta)*q))/Power(q,4) - 
+			(288*b*Power(m_eta,2)*m_tau*Sin(q)*Sin((1 + m_delta)*q))/Power(q,4) - 
+			(288*a*Power(m_eta,2)*m_tau*Sin(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,4)) - 
+			(288*b*Power(m_eta,2)*m_tau*Sin(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,4)) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Sin(q)*Sin((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(6912*c0*Power(m_eta,3)*Power(m_tau,2)*Sin(q)*Sin((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) - 
+			(41472*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Sin(q)*Sin((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Sin(q)*Sin((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,4)) - 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Sin(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,4)) - 
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Sin(q)*Sin((1 + m_delta)*q))/Power(q,4) - 
+			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Sin(q)*Sin((1 + m_delta)*q))/(m_delta*Power(q,4)) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Sin(m_delta*q)*Sin((1 + m_delta)*q))/(Power(m_delta,3)*Power(q,6)) - 
+			(3456*Power(m_eta,3)*Power(m_tau,3)*Sin(m_delta*q)*Sin((1 + m_delta)*q))/(Power(m_delta,2)*Power(q,6)) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Sin((1 + m_delta)*q),2))/(Power(m_delta,2)*Power(q,6)) - 
+ 			(3456*c0*Power(m_eta,3)*Power(m_tau,2)*Power(Sin((1 + m_delta)*q),2))/(Power(m_delta,2)*Power(q,6)) + 
+			(20736*Power(c0,2)*Power(m_eta,4)*Power(m_tau,2)*Power(Sin((1 + m_delta)*q),2))/(Power(m_delta,2)*Power(q,6)) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Sin((1 + m_delta)*q),2))/Power(q,4) + 
+			(144*Power(m_eta,2)*Power(m_tau,2)*Power(Sin((1 + m_delta)*q),2))/(Power(m_delta,2)*Power(q,4)) + 
+			(288*Power(m_eta,2)*Power(m_tau,2)*Power(Sin((1 + m_delta)*q),2))/(m_delta*Power(q,4));
+
+		m_cq[i] = (1-Sqinv)*(Pi/(6*m_eta));
+	}
+}
+
+void Structure::calculateStaticStructure()
+{
+	calculateDirectCorrelation();
+	std::cout << "# Calculating static structure factor...\n";
+	for(int i=0; i<m_size; ++i)
+	{
+		m_Sq[i] = 1/(1-m_cq[i]*(6*m_eta)/Pi);
+	}
+}

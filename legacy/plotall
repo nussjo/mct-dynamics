@@ -1,0 +1,5 @@
+#!/bin/bash
+gnuplot -persist multi.plt
+gnuplot -persist Ttest.plt
+gnuplot -persist Ctest.plt
+gnuplot -persist MSDtest.plt
