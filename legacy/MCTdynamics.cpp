@@ -52,7 +52,7 @@ int main(int argc, const char **argv)
 	const double Q_MAX = 40;		// highest wavenumber in grid
 	const double H_INITIAL = 1e-9;		// initial spacing on temporal domain
 	const double PRECISION = 1e-15;		// calculation precision
-	const int MAX_ITERATIONS = 10000;	// maximum number of iterations for solution
+	const int MAX_ITERATIONS = 1000;	// maximum number of iterations for solution
 	const int SKIP_VALUES = 16;		// number of values to skip when outputting data to file
 	const int GRID_ITERATIONS = 20;		// number of divisions for wavevector grid, determines smallest wavenumber
 

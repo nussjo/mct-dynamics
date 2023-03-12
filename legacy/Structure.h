@@ -24,8 +24,8 @@
 //
 // ======================================================================================
 
-#ifndef MESH_H
-#define MESH_H
+#ifndef STRUCTURE_H
+#define STRUCTURE_H
 
 
 #include <fstream>
@@ -35,7 +35,7 @@
 typedef std::vector<std::vector<std::vector<double>>> array3D;
 typedef std::vector<std::vector<double>> array2D;
 
-class Mesh
+class Structure
 {
 private:
 	double m_eta, m_tau, m_delta;
@@ -47,8 +47,8 @@ private:
 	std::ofstream m_file;	
 
 public:
-	Mesh(double, int, int, double, double, double);
-	virtual ~Mesh();
+	Structure(double, int, int, double, double, double);
+	virtual ~Structure();
 
 	double qback() const;
 	double qfront() const;
@@ -78,6 +78,6 @@ public:
 	double calcVertex(int, int, double);
 };
 
-std::ostream& operator << (std::ostream&, const Mesh&);
+std::ostream& operator << (std::ostream&, const Structure&);
 
 #endif
