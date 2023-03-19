@@ -49,7 +49,7 @@ USER nussjo
 RUN python -m pip install --upgrade \
         pip \
         cmake==3.25.0 \
-        conan==1.57.0 \
+        conan==2.00.0 \
         ninja==1.11.1
 
 ENV PATH "/home/nussjo/.local/bin:$PATH"
