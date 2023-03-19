@@ -1,15 +1,17 @@
 from conan import ConanFile
 from conan.tools.cmake import CMakeToolchain, CMake, cmake_layout
+from conan.tools.scm import Git
 
 
-class helloRecipe(ConanFile):
+class MctDynamics(ConanFile):
     name = "mct-dynamics"
     version = "0.0"
 
     # Optional metadata
     author = "Jonas Nußdorfer jonas.nussdorfer@gmail.com"
-    url = "https://github.com/nussjo/mct-dynamics>"
+    url = "https://github.com/nussjo/mct-dynamics"
     description = "Implementation of solving the MCT dynamics equations"
+    license = "GPL-3.0"
     topics = ("MCT")
 
     # Binary configuration
@@ -17,15 +19,14 @@ class helloRecipe(ConanFile):
     options = {"shared": [True, False], "fPIC": [True, False]}
     default_options = {"shared": False, "fPIC": True}
 
-    # Sources are located in the same place as this recipe, copy them to the recipe
-    exports_sources = "CMakeLists.txt", "src/*", "include/*"
-
     def config_options(self):
         if self.settings.os == "Windows":
             del self.options.fPIC
 
-    def requirements(self):
-        self.requires('etl/20.35.11@')
+    def source(self):
+        git = Git(self)
+        git.clone(url=self.url, target=".")
+        # git.checkout(self.version)
 
     def layout(self):
         cmake_layout(self)
@@ -44,4 +45,4 @@ class helloRecipe(ConanFile):
         cmake.install()
 
     def package_info(self):
-        self.cpp_info.libs = ["hello"]
+        pass

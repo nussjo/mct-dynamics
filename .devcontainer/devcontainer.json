@@ -11,14 +11,12 @@
         "--security-opt",
         "seccomp=unconfined"
     ],
-    "containerEnv": {
-        "CONAN_USER_HOME": "/workspaces/mct/"
-    },
     "customizations": {
         "vscode": {
             "extensions": [
                 "ms-vscode.cpptools",
                 "ms-vscode.cmake-tools",
+                "ms-python.python",
                 "matepek.vscode-catch2-test-adapter",
                 "marus25.cortex-debug",
                 "actboy168.tasks",
